@@ -3,6 +3,7 @@ import CallUs from "../CallUs/CallUs";
 import Category from "../Category/Category";
 import Notice from "../Notice/Notice";
 import PopularMenu from "../PopularMenu/PopularMenu";
+import Recommendation from "../Recommendation/Recommendation";
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             <Notice></Notice>
             <PopularMenu></PopularMenu>
             <CallUs></CallUs>
+            <Recommendation></Recommendation>
         </div>
     );
 };
