@@ -3,7 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import './Featured.css'
 const Featured = () => {
   return (
-    <section className="featured-img  pt-4 text-white  ">
+    <section className="featured-img bg-fixed  pt-4 text-white  ">
    
         <SectionTitle subHeading={"check it out"} heading={"From our menu"}></SectionTitle>
      
