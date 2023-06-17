@@ -12,6 +12,9 @@ const NavBar = () => {
       <li className="hover:bg-orange-300 hover:text-white">
         <Link to='/order/salad'>Order Food</Link>
       </li>
+      <li className="hover:bg-orange-300 hover:text-white">
+        <Link to='/login'>Login</Link>
+      </li>
       
     </>
   );
