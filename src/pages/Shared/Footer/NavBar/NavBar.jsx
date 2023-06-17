@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   const navLinks = (
     <>
-      <li>
+      <li className="hover:bg-orange-300 hover:text-white">
         <Link to='/'>Home</Link>
       </li>
-      <li>
+      <li className="hover:bg-orange-300 hover:text-white">
         <Link to='/menu'>Our Menu</Link>
       </li>
-      <li>
-        <Link to='/order'>Order Food</Link>
+      <li className="hover:bg-orange-300 hover:text-white">
+        <Link to='/order/salad'>Order Food</Link>
       </li>
       
     </>
