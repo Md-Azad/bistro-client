@@ -4,7 +4,6 @@ const SignUp = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
       } = useForm()
 
@@ -15,7 +14,7 @@ const SignUp = () => {
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center w-1/3 lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold">Sign Up!</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -35,7 +34,7 @@ const SignUp = () => {
                         placeholder="Name"
                         className="input input-bordered"
                     />
-                    {errors.name && <span className="text-red-700">Name field is required</span>}
+                    {errors.name && <span className="text-red-700">Name is required</span>}
                 </div>
                 <div className="form-control">
                     <label className="label">
@@ -48,7 +47,7 @@ const SignUp = () => {
                         {...register("email",{ required: true }) }
                         className="input input-bordered"
                     />
-                    {errors.email && <span className="text-red-700">Name field is required</span>}
+                    {errors.email && <span className="text-red-700">Email is required</span>}
                 </div>
                 <div className="form-control">
                 <label className="label">
@@ -57,9 +56,22 @@ const SignUp = () => {
                 <input
                     type="password"
                     name="passoward"
+                    {...register("password",{
+                         required: true,
+                          minLength:7,
+                           maxLength: 20,
+                           pattern:/(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                        
+
+                    
+                    }) }
                     placeholder="password"
                     className="input input-bordered"
                 />
+                {errors.password?.type ==='required' && <span className="text-red-700">Password must be Required</span>}
+                {errors.password?.type ==='minLength' && <span className="text-red-700">Password must be at least 7 charecters</span>}
+                {errors.password?.type ==='maxLength' && <span className="text-red-700">Password must be less than 20 charecters</span>}
+                {errors.password?.type ==='pattern' && <span className="text-red-700">Password must one small letter, one capital letter, a number and a special charecter.</span>}
                 <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -67,7 +79,8 @@ const SignUp = () => {
                 </label>
                 </div>
                 <div className="form-control mt-6">
-                <button className="btn btn-primary">Sign up</button>
+                    <input className="btn btn-primary" type="submit" value="Sign Up" />
+                   
                 </div>
           </form>
         </div>
