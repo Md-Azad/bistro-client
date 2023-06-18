@@ -1,15 +1,20 @@
 import { useContext } from 'react';
 import { useEffect,  useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2'
 
 const Login = () => {
     const {signIn} = useContext(AuthContext);
-    
     const [disabled, setDisable] = useState(true);
+
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+
     useEffect(()=>{
         loadCaptchaEnginge(6); 
     },[])
@@ -30,6 +35,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
               })
+              navigate(from, { replace: true });
         })
         .catch(error=>console.log(error))
 
