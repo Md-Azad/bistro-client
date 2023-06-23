@@ -1,42 +1,54 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../providers/AuthProvider";
+import { FaShoppingCart } from 'react-icons/fa';
+
 
 const NavBar = () => {
-  const {user, logOut} = useContext(AuthContext);
-  const handleLogOut =()=>{
-      logOut()
-    .then(()=>{})
-    .catch(error=>console.log(error))
-  }
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navLinks = (
     <>
       <li className=" hover:bg-orange-300 hover:text-white">
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li className="hover:bg-orange-300 hover:text-white">
-        <Link to='/menu'>Our Menu</Link>
+        <Link to="/menu">Our Menu</Link>
       </li>
       <li className="hover:bg-orange-300 hover:text-white">
-        <Link to='/order/salad'>Order Food</Link>
+        <Link to="/order/salad">Order Food</Link>
       </li>
       <li className="hover:bg-orange-300 hover:text-white">
-        <Link to='/secret'>secret</Link>
+        <Link to="/secret">secret</Link>
       </li>
-      
 
-      {
-        user?
-         <>
-            <button onClick={handleLogOut} className="btn btn-active btn-ghost">LogOut</button>
-        </>: 
+      <li>
+        <Link to="/">
+          <button className="btn">
+              <FaShoppingCart></FaShoppingCart>
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </Link>
+      </li>
+
+      {user ? (
+        <>
+          {/* <p>{user?.displayName}</p> */}
+          <button onClick={handleLogOut} className="btn btn-active btn-ghost">
+            LogOut
+          </button>
+        </>
+      ) : (
         <>
           <li className="hover:bg-orange-300 hover:text-white">
-        <Link to='/login'>Login</Link>
-      </li>
+            <Link to="/login">Login</Link>
+          </li>
         </>
-      }
-      
+      )}
     </>
   );
   return (
@@ -73,8 +85,8 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
-        </div>
+    <a className="btn">Get Started</a>
+  </div>
       </div>
     </div>
   );

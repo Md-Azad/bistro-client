@@ -10,6 +10,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -24,6 +25,7 @@ const SignUp = () => {
         updateUserProfile(data.name, data.photo)
         .then(()=>{
             console.log("user Updated");
+            reset();
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
