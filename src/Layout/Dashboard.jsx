@@ -1,10 +1,15 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaCalendarAlt, FaHome, FaShoppingCart,FaWallet } from 'react-icons/fa';
+import { FaCalendarAlt, FaHome, FaShoppingCart, FaWallet, FaCommentAlt } from 'react-icons/fa';
+import { Helmet } from "react-helmet-async";
 
 
 const Dashboard = () => {
   return (
-    <div className="drawer lg:drawer-open">
+    <>
+      <Helmet>
+        <title> Bistro Boss | Dashboard</title>
+      </Helmet>
+      <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* Page content here */}
@@ -17,9 +22,9 @@ const Dashboard = () => {
           Open drawer
         </label>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side bg-[#D1A054]">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+        <ul className="menu p-4 w-80 h-full text-base-content">
           {/* Sidebar content here */}
           <li>
             <NavLink to='/dashboard/home'><FaHome></FaHome> USER HOME</NavLink>
@@ -38,14 +43,18 @@ const Dashboard = () => {
             <NavLink to='/'><FaHome></FaHome>HOME</NavLink>
           </li>
           <li>
-            <NavLink to='/menu'><FaHome></FaHome>SHOP</NavLink>
+            <NavLink to='/menu'><FaShoppingCart></FaShoppingCart>SHOP</NavLink>
           </li>
           <li>
             <NavLink to="/order/salad"><FaHome></FaHome>ORDER</NavLink>
           </li>
+          <li>
+            <NavLink to="/contact"><FaCommentAlt></FaCommentAlt> Contact</NavLink>
+          </li>
         </ul>
       </div>
     </div>
+    </>
   );
 };
 
