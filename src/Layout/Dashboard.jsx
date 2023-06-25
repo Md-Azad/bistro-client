@@ -1,9 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaCalendarAlt, FaHome, FaShoppingCart, FaWallet, FaCommentAlt } from 'react-icons/fa';
 import { Helmet } from "react-helmet-async";
+import useCart from "../hooks/useCart";
 
 
 const Dashboard = () => {
+  const [cart] = useCart();
   return (
     <>
       <Helmet>
@@ -36,7 +38,9 @@ const Dashboard = () => {
             <NavLink to='/dashboard/history' ><FaWallet></FaWallet>Payment History</NavLink>
           </li>
           <li>
-            <NavLink to='/dashboard/mycart'><FaShoppingCart></FaShoppingCart>My Cart</NavLink>
+            <NavLink to='/dashboard/mycart'><FaShoppingCart></FaShoppingCart>My Cart
+            <span className="badge badge-secondary">{cart?.length}</span>
+            </NavLink>
           </li>
           <div className="divider"></div>
           <li>
