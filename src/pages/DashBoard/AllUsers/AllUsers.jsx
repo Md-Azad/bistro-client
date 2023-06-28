@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
@@ -8,9 +9,25 @@ const AllUsers = () => {
     return res.json();
   });
 
-  const handleDelete = user=>{
+  const handleMakeAdmin = (user) => {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.modifiedCount>0){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `${user.name}`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+        }
+      });
+  };
 
-  }
+  const handleDelete = (user) => {};
 
   return (
     <div>
@@ -35,18 +52,20 @@ const AllUsers = () => {
 
             {users.map((user, index) => (
               <tr key={user._id}>
-                <th>{index +1}</th>
+                <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                    {
-                        user.role === 'admin'? 'admin': <button
-                        
-                        className="btn btn-ghost  bg-orange-600 text-white"
-                      >
-                        <FaUserShield></FaUserShield>
-                      </button>
-                    }
+                  {user.role === "admin" ? (
+                    "admin"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn btn-ghost  bg-orange-600 text-white"
+                    >
+                      <FaUserShield></FaUserShield>
+                    </button>
+                  )}
                 </td>
                 <td>
                   <button
