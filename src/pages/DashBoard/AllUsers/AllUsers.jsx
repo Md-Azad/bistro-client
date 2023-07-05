@@ -16,6 +16,7 @@ const AllUsers = () => {
       .then((res) => res.json())
       .then((data) => {
         if(data.modifiedCount>0){
+            refetch();
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -27,7 +28,9 @@ const AllUsers = () => {
       });
   };
 
-  const handleDelete = (user) => {};
+  const handleDelete = (user) => {
+    console.log(user);
+  };
 
   return (
     <div>
